@@ -1,4 +1,7 @@
-const Brevo = require('sib-api-v3-sdk');
+import dotenv from 'dotenv';
+dotenv.config();
+
+import Brevo from 'sib-api-v3-sdk'
 
 const defaultClient = Brevo.ApiClient.instance;
 const apiKey = defaultClient.authentications['api-key'];
@@ -13,18 +16,14 @@ async function sendEmailBrevo(to, subject, htmlContent) {
         subject,
         htmlContent,
     };
-    // email.subject = subject;
-    // email.htmlContent = htmlContent;
-    // email.sender = { name: "yourvisibly", email: "yourvisibly@gmail.com" };
-    // email.to = [{ email: to }];
 
     try {
         const response = await apiInstance.sendTransacEmail(email);
-        // console.log("Brevo Email sent:", response.messageId);
+        console.log("Brevo Email sent:", response.messageId);
     } catch (error) {
         console.error("Brevo email error:", error.message);
-        // throw new Error("Failed to send email with Brevo");
+        throw new Error("Failed to send email with Brevo");
     }
 }
 
-module.exports = sendEmailBrevo;
+export default sendEmailBrevo;
