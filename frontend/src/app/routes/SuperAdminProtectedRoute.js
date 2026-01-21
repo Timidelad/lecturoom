@@ -12,29 +12,18 @@ export default function SuperAdminProtectedRoute({ children }) {
 
     useEffect(() => {
         const verifyToken = async () => {
-            const token = localStorage.getItem("token");
-
-            if (!token) {
-                router.push('/adminlogin')
-            }
 
             try {
-                const response = await axios.get("/authentication/verify-admin-token", {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                });
+                const response = await axios.post("/verifyAdmin");
+                console.log(response)
 
-                if (!response.data.valid) {
-                    // toast.error("sorry you cannot login")
-                    localStorage.removeItem("token");
+                if (response.data.success === false) {
                     router.push("/adminlogin")
                 } else {
                     // toast.success("Login successful!");
                     setLoading(false)
                 }
             } catch (error) {
-                localStorage.removeItem("token");
                 router.push("/adminlogin");
             }
         };
