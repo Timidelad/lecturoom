@@ -18,6 +18,11 @@ const superAdmin = new mongoose.Schema({
         default: false
     },
 
+    token: {
+        type: String,
+        default: undefined
+    },
+
     verified: {
         type: Boolean,
         default: false
