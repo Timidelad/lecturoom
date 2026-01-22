@@ -15,7 +15,6 @@ export default function SuperAdminProtectedRoute({ children }) {
 
             try {
                 const response = await axios.post("/verifyAdmin");
-                console.log(response)
 
                 if (response.data.success === false) {
                     router.push("/adminlogin")

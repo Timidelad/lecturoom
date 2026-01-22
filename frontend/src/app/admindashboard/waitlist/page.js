@@ -16,7 +16,6 @@ export default function Waitlist() {
         setStatus(true)
 
         try {
-            const token = localStorage.getItem("token");
             const response = await axios.post("/accessList", formData);
             if (response.status === 201) {
                 toast.success("User Added successfully");

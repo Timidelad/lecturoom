@@ -29,7 +29,6 @@ export default function AdminLogin() {
         try {
             const response = await axios.post("/superAdmin/superAdminLogin", formData);
             if (response.status === 200) {
-                localStorage.setItem("token", response.data.token);
                 toast.success("Login successful!");
                 router.push("/admindashboard");
             }
