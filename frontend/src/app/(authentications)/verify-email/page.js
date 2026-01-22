@@ -18,7 +18,7 @@ function EmailverificationInner() {
 
         const verifyEmail = async () => {
             try {
-                const response = await axios.get(`/authentication/verify-email?token=${token}`);
+                const response = await axios.post(`/authentication/verifyEmail?token=${token}`);
                 if (response.status === 200) {
                     setMessage("Email verified successfully! You can now log in")
                     router.push("/login")

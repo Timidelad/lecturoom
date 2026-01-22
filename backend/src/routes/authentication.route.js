@@ -1,115 +1,12 @@
 import express from 'express';
 import { signup } from '../controllers/authentication.controller.js';
+import verifyEmail from '../controllers/verifyEmail.controller.js';
 const router = express.Router();
 
 router.post('/signup', signup)
+router.post('/verifyEmail', verifyEmail)
 
 export default router;
-
-
-
-// router.post('/signup', async (req, res) => {
-//     try {
-//         const {
-//             fullname,
-//             matricNumber,
-//             institutionName,
-//             level,
-//             facultyName,
-//             phone,
-//             email,
-//             password,
-//         } = req.body;
-
-//         const facultyNameLower = facultyName.toLowerCase();
-//         const institutionNameLower = institutionName.toLowerCase();
-
-//         // Check if faculty already exists
-//         const existingFaculty = await Faculty.findOne({
-//             name: facultyNameLower,
-//             institutionName: institutionNameLower,
-//         });
-
-//         if (existingFaculty) {
-//             return res.status(400).json({
-//                 success: false,
-//                 message: 'Faculty already exists',
-//             });
-//         }
-
-//         const inAccessList = await AccessList.findOne({ email });
-//         if (!inAccessList) {
-//             return res.status(400).json({
-//                 success: false,
-//                 message: "You cannnot create an account because you are not on the access list. kindly click join to be added to the list"
-//             })
-//         }
-
-//         const existingUser = await Member.findOne({ email });
-//         if (existingUser) {
-//             return res.status(400).json({
-//                 success: false,
-//                 message: "Email already exist"
-//             })
-//         }
-
-//         // Hash password
-//         const hashedPassword = await bcrypt.hash(password, 10);
-//         const token = crypto.randomBytes(32).toString('hex');
-
-//         // Send verification email
-//         const verifyUrl = `https://lecturoom.vercel.app/verify-email?token=${token}`;
-//         const htmlContent = `
-//       <h2>Email verification</h2>
-//       <p>Click the link below to verify your account:</p>
-//       <a href="${verifyUrl}">Verify Email</a>
-//     `;
-
-//         await sendEmailBrevo(email, 'Verify Your Email', htmlContent)
-
-//         // Create member
-//         const newMember = await Member.create({
-//             fullname,
-//             email,
-//             matricNumber,
-//             level,
-//             phone,
-//             password: hashedPassword,
-//             verificationToken: token,
-//             isAdmin: true,
-//             verified: false,
-//         });
-
-//         // Create faculty
-//         const newFaculty = await Faculty.create({
-//             institutionName: institutionNameLower,
-//             name: facultyNameLower,
-//             members: [newMember._id],
-//         });
-
-//         //     // Send verification email
-//         //     const verifyUrl = `https://lecturoom.vercel.app/verify-email?token=${token}`;
-//         //     const htmlContent = `
-//         //   <h2>Email verification</h2>
-//         //   <p>Click the link below to verify your account:</p>
-//         //   <a href="${verifyUrl}">Verify Email</a>
-//         // `;
-
-//         // await sendEmail(email, 'Verify your email', html);
-
-//         return res.status(201).json({
-//             success: true,
-//             message: 'Faculty environment created successfully. Check your email to verify your account.',
-//             facultyId: newFaculty._id,
-//         });
-//     } catch (error) {
-//         return res.status(500).json({
-//             success: false,
-//             message: 'Error during signup',
-//             error: error.message,
-//         });
-//     }
-// });
 
 
 // router.post('/forgetpassword', async (req, res) => {
