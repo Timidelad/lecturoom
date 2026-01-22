@@ -1,8 +1,5 @@
-import express from 'express';
-const router = express.Router();
 import AccessList from '../models/accessList.js';
-
-router.post('/', async (req, res) => {
+export const accessList = async (req, res) => {
     const { email } = req.body;
 
     try {
@@ -26,6 +23,4 @@ router.post('/', async (req, res) => {
             message: "An error occurred while adding the email to the access list"
         });
     }
-})
-
-export default router;
+}
