@@ -17,14 +17,8 @@ export default function Waitlist() {
 
         try {
             const token = localStorage.getItem("token");
-            const response = await axios.post(
-                "/members/add-to-access-list",
-                formData, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
-            if (response.status === 200) {
+            const response = await axios.post("/accessList", formData);
+            if (response.status === 201) {
                 toast.success("User Added successfully");
                 setFormData({
                     email: "",

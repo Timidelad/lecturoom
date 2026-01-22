@@ -17,8 +17,8 @@ export default function AccessList() {
         setStatus(true)
 
         try {
-            const response = await axios.post("/members/add-to-wait-list", formData);
-            if (response.status === 200) {
+            const response = await axios.post("/waitlist", formData);
+            if (response.status === 201) {
                 toast.success("Your email has been added to the wait-list successfully. You will receive an email once you have been added to the access list.")
                 setFormData({
                     email: "",
