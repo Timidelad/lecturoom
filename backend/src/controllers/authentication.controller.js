@@ -71,24 +71,24 @@ export const signup = async (req, res) => {
         // Send verification email
         await sendEmailBrevo(email, 'verify your email', htmlContent);
 
-        // Create faculty
-        const newFaculty = await Faculty.create({
-            institutionName: institutionNameLower,
-            name: facultyNameLower,
-            members: [newMember._id],
-        });
-
         // Create member
         const newMember = await Member.create({
             fullname,
             email,
             matricNumber,
             level,
-            phone,
+            phoneNumber,
             password: hashedPassword,
             verificationToken: token,
             isAdmin: true,
             verified: false,
+        });
+
+        // Create faculty
+        const newFaculty = await Faculty.create({
+            institutionName: institutionNameLower,
+            name: facultyNameLower,
+            members: [newMember._id],
         });
 
         return res.status(201).json({

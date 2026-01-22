@@ -3,7 +3,7 @@ import cors from 'cors'
 import cookieParser from 'cookie-parser';
 import connectToDatabase from './src/config/database.js';
 import waitlistRoute from './src/routes/waitlist.js';
-import authenticationRoute from './src/routes/authentication.js'
+import authenticationRoute from './src/routes/authentication.route.js'
 import superAdminRoute from './src/routes/superAdmin.route.js';
 import verifyAdminRoute from './src/routes/verifyAdmin.route.js';
 import accessListRoute from './src/routes/accessList.route.js';
