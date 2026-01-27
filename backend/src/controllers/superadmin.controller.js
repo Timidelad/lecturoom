@@ -25,7 +25,7 @@ export const superAdminLogin = async (req, res) => {
 
         const token = jwt.sign(
             { id: adminExists._id, email: email },
-            process.env.JWT_SECRET,
+            process.env.JWT_SECRET_SUPER_ADMIN,
             { expiresIn: '3h' }
         );
 

@@ -102,3 +102,47 @@ export const signup = async (req, res) => {
         });
     }
 };
+
+export const login = async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        const member = await Member.findOne({ email });
+        if (!member) {
+            return res.status(401).json({
+                success: false,
+                message: 'Invalid Credentials'
+            })
+        }
+        const validPassword = await bcrypt.compare(password, member.password);
+
+        if (!validPassword) {
+            return res.status(401).json({
+                success: false,
+                message: "Invalid Credentials"
+            })
+        }
+
+        const token = jwt.sign(
+            { id: member._id, email: email },
+            process.env.JWT_SECRET_USER,
+            { expiresIn: '3h' }
+        );
+
+        res.cookie('userToken', token, {
+            httpOnly: true,
+            secure: false,
+            sameSite: "strict",
+            maxAge: 3 * 60 * 60 * 1000
+        })
+
+        return res.status(200).json({
+            success: true
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: error.message
+        })
+    }
+};
