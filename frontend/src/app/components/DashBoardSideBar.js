@@ -20,7 +20,6 @@ import { useFaculty } from "../context/FacultyContext";
 export default function DashboardPage() {
     let [isOpen, setIsOpen] = useState(false);
     const router = useRouter();
-    const { faculty } = useFaculty();
 
     const logout = () => {
         localStorage.clear();

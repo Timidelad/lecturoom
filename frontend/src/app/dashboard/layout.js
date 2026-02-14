@@ -1,16 +1,10 @@
-import DashboardPage from '../components/DashBoardSideBar'
-import { FacultyProvider } from '../context/FacultyContext'
-import ProtectedRoute from '../routes/ProtectedRoute'
+import DashboardNavbar from "../components/DashboardNavbar";
 
 export default function DashboardLayout({ children }) {
     return (
-        <FacultyProvider>
-            <ProtectedRoute>
-                <div className="lg:flex">
-                    <DashboardPage />
-                    <main className="pt-[45px] lg:ml-[20%] px-[10px] lg:pt-[10px] lg:px-[64px] w-full h-full  bg-[#f8f8f8]">{children}</main>
-                </div>
-            </ProtectedRoute>
-        </FacultyProvider>
+        <div className="flex min-h-screen">
+            <DashboardNavbar />
+            <div className="bg-[#f8fafc] flex-1 min-h-screen lg:ml-[16%]">{children}</div>
+        </div>
     )
 }

@@ -13,9 +13,9 @@ export default function NavLink({ href, children, onClick }) {
         <Link
             onClick={onClick}
             href={href}
-            className={` flex gap-x-2 items-center border-[1px] w-[160px] rounded-[10px] px-[10px] py-[6px] transition 
+            className={` flex gap-x-2 items-center w-[160px] rounded-[10px] px-[10px] py-[6px] transition 
                 ${(isActive || isDashboard)
-                    ? 'text-[#5A56EA] border-[#5A56EA] bg-[#ffffff]' : 'border-[#c0bcc4] hover:text-[#5A56EA] hover:border-[#5A56EA] text-gray-600 hover:bg-[#ffffff] transition-all duration-500 ease-in-out'
+                    ? 'text-[#136dec] bg-[#e7f0fd]' : ' hover:text-[#136dec] hover:bg-[#e7f0fd] transition-all duration-500 ease-in-out'
                 }
                 `}
         >
